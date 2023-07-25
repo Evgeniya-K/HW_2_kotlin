@@ -1,9 +1,9 @@
 
 
 data class Post(
-    val id: Int,
-    val ownerId: Int,
-    val fromId: Int,
+    val id: Int = 0,
+    val ownerId: Int = 0,
+    val fromId: Int = 0,
     val text: String = "тестовый текст",
     val friendsOnly: Boolean = false,
     val postType: String = "reply",
@@ -15,7 +15,7 @@ data class Post(
 )
 
 data class Comments (
-    val count : Int = 1,
+    val count : Int = 0,
     val groupsCanCost : Boolean = true,
     val canClose : Boolean = true,
     val canOpen : Boolean = true
@@ -44,9 +44,9 @@ object WallService {
 
 fun main() {
 
-    WallService.add(Post(id = 1, ownerId = 16, fromId = 1, comments = Comments()))
-    WallService.add(Post(id = 1, ownerId = 16, fromId = 1, comments = Comments()))
-    WallService.update(Post(id = 5, ownerId = 87, fromId = 16, text = "изменения" ,comments = Comments(6)))
+    WallService.add(Post(ownerId = 16, fromId = 1, comments = Comments()))
+    WallService.add(Post(ownerId = 16, fromId = 1, comments = Comments()))
+    WallService.update(Post(id = 2, ownerId = 87, fromId = 16, text = "изменения" ,comments = Comments(6)))
 
 
 }
