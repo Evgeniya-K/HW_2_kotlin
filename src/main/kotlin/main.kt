@@ -40,13 +40,14 @@ object WallService {
         }
         return false
     }
+
+    fun clear() {
+        posts = emptyArray()
+        id = 1
+    }
 }
 
 fun main() {
-
-    WallService.add(Post(ownerId = 16, fromId = 1, comments = Comments()))
-    WallService.add(Post(ownerId = 16, fromId = 1, comments = Comments()))
-    WallService.update(Post(id = 2, ownerId = 87, fromId = 16, text = "изменения" ,comments = Comments(6)))
 
 
 }
