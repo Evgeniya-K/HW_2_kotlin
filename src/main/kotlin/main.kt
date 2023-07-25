@@ -1,3 +1,5 @@
+
+
 data class Post(
     val id: Int,
     val ownerId: Int,
@@ -20,10 +22,31 @@ data class Comments (
     )
 
 object WallService {
-    private val post = emptyArray<Post>()
+    private var posts = emptyArray<Post>()
+    private var id = 1
+    fun add(post: Post): Post {
+        posts += post.copy(id = id)
+        id +=1
+        return posts.last()
+    }
 
+    fun update(post: Post): Boolean {
+        for ((index,oldPost) in posts.withIndex()){
+            if (oldPost.id == post.id) {
+                posts[index] = post
+                return true
+            }
+
+        }
+        return false
+    }
 }
 
 fun main() {
-    val post = Post(id = 15, ownerId = 16, fromId = 1, comments = Comments())
+
+    WallService.add(Post(id = 1, ownerId = 16, fromId = 1, comments = Comments()))
+    WallService.add(Post(id = 1, ownerId = 16, fromId = 1, comments = Comments()))
+    WallService.update(Post(id = 5, ownerId = 87, fromId = 16, text = "изменения" ,comments = Comments(6)))
+
+
 }
