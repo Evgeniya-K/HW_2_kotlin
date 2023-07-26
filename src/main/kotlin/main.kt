@@ -17,7 +17,8 @@ data class Post(
     val isFavorite: Boolean = true,
     val comments: Comments,
     val copyright: Copyright? = null,
-    val geo: Geo? = null
+    val geo: Geo? = null,
+    val attachments: Array<Attachment> = emptyArray()
 
 )
 
