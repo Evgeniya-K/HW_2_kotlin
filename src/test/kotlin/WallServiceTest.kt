@@ -21,7 +21,7 @@ class WallServiceTest {
     fun updateExisting() {
        WallService.add(Post(ownerId = 16, fromId = 1, text = "первый пост", comments = Comments()))
        WallService.add(Post(ownerId = 20, fromId = 7, text = "второй пост", comments = Comments()))
-       val result = WallService.update(Post(id = 2, ownerId = 87, fromId = 16, text = "изменения" ,comments = Comments(6)))
+       val result = WallService.update(Post(id = 2, ownerId = 87, fromId = 16, text = "изменения" , comments = Comments(6)))
        assertTrue(result)
 
 
@@ -31,7 +31,7 @@ class WallServiceTest {
     fun updateNotExisting() {
         WallService.add(Post(ownerId = 16, fromId = 1, text = "первый пост", comments = Comments()))
         WallService.add(Post(ownerId = 20, fromId = 7, text = "второй пост", comments = Comments()))
-        val result = WallService.update(Post(id = 9, ownerId = 87, fromId = 16, text = "изменения" ,comments = Comments(6)))
+        val result = WallService.update(Post(id = 9, ownerId = 87, fromId = 16, text = "изменения" , comments = Comments(6)))
         assertFalse(result)
 
     }
