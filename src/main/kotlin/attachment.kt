@@ -1,5 +1,5 @@
 abstract class Attachment(
-    val type: String
+    open val type: String
 )
 
 class Photo(
@@ -7,7 +7,10 @@ class Photo(
     val ownerId: Int,
     val photo_130: String,
     val photo_604: String
-) : Attachment("photo")
+) // сделала класс фото не наследуемым
+// возможно по заданию нужно так
+data class PhotoAttachment(val photo: Photo, override val type: String): Attachment("photo")
+// возможно по заданию нужно так
 
 class Video(
     val id: Int,
