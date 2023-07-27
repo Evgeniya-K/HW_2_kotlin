@@ -4,11 +4,11 @@ data class Post(
     val id: Int = 0,
     val ownerId: Int = 0,
     val fromId: Int = 0,
-    val created_by: Int? = null,
+    val createdBy: Int? = null,
     val date: Int = 1690382750,
     val text: String = "тестовый текст",
-    val reply_owner_id: Int? = null,
-    val reply_post_id: Int? = null,
+    val replyOwnerId: Int? = null,
+    val replyPostId: Int? = null,
     val friendsOnly: Boolean = false,
     val postType: String = "reply",
     val canDelete: Boolean = true,
@@ -19,6 +19,13 @@ data class Post(
     val copyright: Copyright? = null,
     val geo: Geo? = null,
     val attachments: Array<Attachment> = emptyArray()
+    val likes: Likes? = null,
+    val reposts: Repost? = null,
+    val views: Views,
+    val signerId: Int? = null,
+    val canPin : Boolean = true,
+    val markedAsAds : Boolean,
+    val postponedId: Int? = null
 
 )
 
@@ -30,11 +37,24 @@ data class Comments (
     val canOpen : Boolean = true
     )
 
+data class Views( val count: Int = 0)
 data class Copyright(
     val id: Int,
     val link: String,
     val name: String,
     val type: String
+)
+
+data class Likes(
+    val count: Int = 0,
+    val userLikes: Boolean = true,
+    val canLike: Boolean = true,
+    val canPublish: Boolean = true
+)
+
+data class Repost(
+    val count: Int,
+    val user_reposted: Boolean
 )
 
 data class Place(val title: String = "марсово поле")

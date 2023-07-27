@@ -7,37 +7,42 @@ class Photo(
     val ownerId: Int,
     val photo_130: String,
     val photo_604: String
-) // сделала класс фото не наследуемым
-// возможно по заданию нужно так
+)
 data class PhotoAttachment(val photo: Photo, override val type: String): Attachment("photo")
-// возможно по заданию нужно так
+
 
 class Video(
     val id: Int,
     val ownerId: Int,
     val title: String,
     val duration: Int
-) : Attachment("video")
+)
+
+data class VideoAttachment(val video:Video, override val type: String): Attachment("video")
 
 class Audio(
     val id: Int,
     val ownerId: Int,
     val title: String,
     val artist: String
-) : Attachment("audio")
+)
 
+data class AudioAttachment(val audio:Audio, override val type: String): Attachment("audio")
 class Graffiti(
     val id: Int,
     val ownerId: Int,
     val photo_130: String,
     val photo_604: String
-) : Attachment("graffiti")
+)
+
+data class GraffitiAttachment(val graffiti:Graffiti, override val type: String): Attachment("graffiti")
+
 
 class Doc(
     val id: Int,
     val ownerId: Int,
     val title: String,
     val size: Int
-) : Attachment("doc")
+)
 
-
+data class DocAttachment(val doc:Doc, override val type: String): Attachment("doc")
