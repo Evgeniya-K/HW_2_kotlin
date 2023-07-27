@@ -12,15 +12,15 @@ class WallServiceTest {
 
     @Test
     fun add() {
-      val result = WallService.add(Post(ownerId = 16, fromId = 1, comments = Comments()))
+      val result = WallService.add(Post(ownerId = 16, fromId = 1,))
       assertEquals(1, result.id)
 
     }
 
     @Test
     fun updateExisting() {
-       WallService.add(Post(ownerId = 16, fromId = 1, text = "первый пост", comments = Comments()))
-       WallService.add(Post(ownerId = 20, fromId = 7, text = "второй пост", comments = Comments()))
+       WallService.add(Post(ownerId = 16, fromId = 1, text = "первый пост"))
+       WallService.add(Post(ownerId = 20, fromId = 7, text = "второй пост"))
        val result = WallService.update(Post(id = 2, ownerId = 87, fromId = 16, text = "изменения" , comments = Comments(6)))
        assertTrue(result)
 

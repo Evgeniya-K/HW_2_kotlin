@@ -15,16 +15,16 @@ data class Post(
     val canEdit: Boolean = true,
     val isPinned: Boolean = true,
     val isFavorite: Boolean = true,
-    val comments: Comments,
+    val comments: Comments = Comments(),
     val copyright: Copyright? = null,
     val geo: Geo? = null,
-    val attachments: Array<Attachment> = emptyArray()
+    val attachments: Array<Attachment> = emptyArray(),
     val likes: Likes? = null,
     val reposts: Repost? = null,
-    val views: Views,
+    val views: Views = Views(),
     val signerId: Int? = null,
     val canPin : Boolean = true,
-    val markedAsAds : Boolean,
+    val markedAsAds : Boolean = false,
     val postponedId: Int? = null
 
 )
