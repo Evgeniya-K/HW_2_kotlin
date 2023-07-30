@@ -4,22 +4,67 @@ data class Post(
     val id: Int = 0,
     val ownerId: Int = 0,
     val fromId: Int = 0,
+    val createdBy: Int? = null,
+    val date: Int = 1690382750,
     val text: String = "тестовый текст",
+    val replyOwnerId: Int? = null,
+    val replyPostId: Int? = null,
     val friendsOnly: Boolean = false,
     val postType: String = "reply",
     val canDelete: Boolean = true,
     val canEdit: Boolean = true,
     val isPinned: Boolean = true,
     val isFavorite: Boolean = true,
-    val comments: Comments
+    val comments: Comments = Comments(),
+    val copyright: Copyright? = null,
+    val geo: Geo? = null,
+    val attachments: Array<Attachment> = emptyArray(),
+    val likes: Likes? = null,
+    val reposts: Repost? = null,
+    val views: Views = Views(),
+    val signerId: Int? = null,
+    val canPin : Boolean = true,
+    val markedAsAds : Boolean = false,
+    val postponedId: Int? = null
+
 )
 
 data class Comments (
     val count : Int = 0,
+    val can_post : Boolean = true,
     val groupsCanCost : Boolean = true,
     val canClose : Boolean = true,
     val canOpen : Boolean = true
     )
+
+data class Views( val count: Int = 0)
+data class Copyright(
+    val id: Int,
+    val link: String,
+    val name: String,
+    val type: String
+)
+
+data class Likes(
+    val count: Int = 0,
+    val userLikes: Boolean = true,
+    val canLike: Boolean = true,
+    val canPublish: Boolean = true
+)
+
+data class Repost(
+    val count: Int,
+    val user_reposted: Boolean
+)
+
+data class Place(val title: String = "марсово поле")
+
+data class Geo(
+    val place: Place? = null,
+    val type: String,
+    val coordinates: String
+    )
+
 
 object WallService {
     private var posts = emptyArray<Post>()
