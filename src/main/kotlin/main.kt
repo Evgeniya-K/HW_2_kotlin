@@ -1,4 +1,4 @@
-
+import java.lang.RuntimeException
 
 data class Post(
     val id: Int = 0,
@@ -25,7 +25,8 @@ data class Post(
     val signerId: Int? = null,
     val canPin : Boolean = true,
     val markedAsAds : Boolean = false,
-    val postponedId: Int? = null
+    val postponedId: Int? = null,
+    val comment : Comment = Comment()
 
 )
 
@@ -34,7 +35,7 @@ data class Comments (
     val can_post : Boolean = true,
     val groupsCanCost : Boolean = true,
     val canClose : Boolean = true,
-    val canOpen : Boolean = true
+    val canOpen : Boolean = true,
     )
 
 data class Views( val count: Int = 0)
@@ -65,10 +66,31 @@ data class Geo(
     val coordinates: String
     )
 
-
+data class Comment(
+    val id: Int = 1,
+    val fromId: Int = 13,
+    val date: Int = 1690382750,
+    val text: String = "",
+    val attachments: Array<Attachment> = emptyArray()
+)
+class PostNotFoundException (message: String) : RuntimeException (message)
 object WallService {
     private var posts = emptyArray<Post>()
     private var id = 1
+    private var comments = emptyArray<Comment>()
+
+    fun createComment(postId: Int, mycomment: Comment): Comment {
+            for ((index, post) in posts.withIndex()) {
+                if (post.id == postId) {
+                    posts[index] = post.copy(comment = mycomment)
+                    return posts[index].comment
+                }
+            }
+        return throw PostNotFoundException ("пост не найден")
+    }
+
+
+
     fun add(post: Post): Post {
         posts += post.copy(id = id)
         id +=1
@@ -81,7 +103,6 @@ object WallService {
                 posts[index] = post
                 return true
             }
-
         }
         return false
     }
@@ -90,9 +111,14 @@ object WallService {
         posts = emptyArray()
         id = 1
     }
+
+    fun get(index: Int): Post {
+        return posts[index]
+    }
 }
 
 fun main() {
+
 
 
 }
