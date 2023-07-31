@@ -38,9 +38,7 @@ class WallServiceTest {
 
     @Test(expected = PostNotFoundException::class)
     fun shouldThrow() {
-        WallService.add(Post(ownerId = 16, fromId = 1, text = "первый пост", comments = Comments()))
-        WallService.add(Post(ownerId = 20, fromId = 7, text = "второй пост", comments = Comments()))
-        val resalt = WallService.createComment(15, Comment(text = "это провал")) ?: throw PostNotFoundException ("пост не найден")
+        WallService.createComment(15, Comment(text = "это провал"))
     }
 
     @Test

@@ -79,14 +79,14 @@ object WallService {
     private var id = 1
     private var comments = emptyArray<Comment>()
 
-    fun createComment(postId: Int, mycomment: Comment): Comment? {
+    fun createComment(postId: Int, mycomment: Comment): Comment {
             for ((index, post) in posts.withIndex()) {
                 if (post.id == postId) {
                     posts[index] = post.copy(comment = mycomment)
                     return posts[index].comment
                 }
             }
-        return null
+        return throw PostNotFoundException ("пост не найден")
     }
 
 
