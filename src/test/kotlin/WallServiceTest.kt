@@ -35,4 +35,23 @@ class WallServiceTest {
         assertFalse(result)
 
     }
+
+    @Test(expected = PostNotFoundException::class)
+    fun shouldThrow() {
+        WallService.add(Post(ownerId = 16, fromId = 1, text = "первый пост", comments = Comments()))
+        WallService.add(Post(ownerId = 20, fromId = 7, text = "второй пост", comments = Comments()))
+        val resalt = WallService.createComment(15, Comment(text = "это провал")) ?: throw PostNotFoundException ("пост не найден")
+    }
+
+    @Test
+    fun createComment(){
+        val comment: Comment = Comment(text = "тут должен добавиться комментарий")
+        WallService.add(Post(ownerId = 16, fromId = 1, text = "первый пост", comments = Comments()))
+        WallService.add(Post(ownerId = 20, fromId = 7, text = "второй пост", comments = Comments()))
+        WallService.createComment(1,comment)
+        val result = WallService.get(0).comment.equals(comment)
+
+        assertTrue(result)
+    }
+
 }
